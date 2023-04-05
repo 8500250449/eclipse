@@ -1,0 +1,39 @@
+package com.Amazon.pageobjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Demo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		WebDriverManager.edgedriver().setup();
+	     WebDriver driver=new EdgeDriver();
+	     driver.get("https://www.amazon.com");
+	     driver.manage().window().maximize();
+	     
+	     driver.findElement(By.linkText("Your Account")).click();
+	     
+	     driver.findElement(By.xpath("//*[@id=\"nav-link-accountList\"]")).click();
+	    
+	     driver.findElement(By.id("ap_email")).sendKeys("rockstardivyaakash@gmail.com");
+	     driver.findElement(By.id("continue")).click();
+	     driver.findElement(By.id("ap_password")).sendKeys("Ammanana@6155");
+	     driver.findElement(By.id("signInSubmit")).click();
+	     driver.findElement(By.id("twotabsearchtextbox")).sendKeys("iphone");
+	     Thread.sleep(60); 
+	     driver.findElement(By.xpath("//*[@id=\"nav-search-submit-button\"]")).click(); 
+	     Thread.sleep(60);
+	     driver.findElement(By.linkText("Apple iPhone 13 (128GB) - Midnight")).click();
+	     
+	     
+	     System.out.println("The title of the browser is:"+driver.getTitle());
+	     
+	     
+
+}
+}

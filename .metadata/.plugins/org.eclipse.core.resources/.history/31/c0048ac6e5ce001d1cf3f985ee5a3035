@@ -1,0 +1,56 @@
+package com.Amazon.pageobjects;
+
+	import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+	import org.openqa.selenium.WebElement;
+	import org.openqa.selenium.support.FindBy;
+
+	public class search_pagefactory {
+
+		WebDriver driver;
+		
+			
+		@FindBy(id="twotabsearchtextbox")
+		WebElement Searchbox;
+		
+		
+		
+		@FindBy (xpath="//*[@id=\"nav-search-submit-button\"]")
+		WebElement Searchbutton ;
+		
+		
+		
+		@FindBy(linkText="Apple iPhone 13 (128GB) - Midnight")
+		WebElement Model;	
+
+		public void searchbox()
+		{
+			(Searchbox).sendKeys("iphone");
+		}
+		
+		public void clickonsearchbutton()
+		{
+			(Searchbutton).click();
+		}
+		
+		public void model(String model1,WebDriver driver)
+		{
+			List<String> l1=new ArrayList<String>(driver.getWindowHandles());
+		     System.out.println(l1.size());
+		    // Thread.sleep(38);
+		     driver.switchTo().window(l1.get(1));
+		     JavascriptExecutor js=(JavascriptExecutor)driver;
+		     
+			(Model).sendKeys(model1);
+		}
+		
+		
+	}
+
+
+
+

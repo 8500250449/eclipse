@@ -1,0 +1,30 @@
+package com.mcd.pageobjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Testamazon {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		WebDriverManager.edgedriver().setup();
+	     WebDriver driver=new EdgeDriver();
+	     driver.get("https://www.amazon.com");
+	     driver.findElement(By.linkText("Your Account")).click();
+	     
+	     driver.findElement(By.xpath("//*[@id=\"nav-link-accountList\"]")).click();
+	    
+	     driver.findElement(By.id("ap_email")).sendKeys("rockstardivyakash@gmail.com");
+	     driver.findElement(By.xpath("//button[@type='submit']")).click();
+	     driver.findElement(By.id("input-password")).sendKeys("Ammanana@6155");
+	     driver.findElement(By.xpath("//button[@type='submit']")).click();
+	     System.out.println("The title of the browser is:"+driver.getTitle());
+	     
+	     
+
+}
+}

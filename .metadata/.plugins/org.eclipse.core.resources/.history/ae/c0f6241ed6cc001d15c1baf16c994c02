@@ -1,0 +1,16 @@
+package labs;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class pageobjects11 {
+
+public static void main(String[] args) {
+		// TODO Auto-generated method stub
+WebDriver driver;
+
+By Desktoplink=By.linkText("Desktops");
+By Maclink=By.linkText("Mac (1)");
+	}
+
+}

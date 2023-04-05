@@ -1,0 +1,20 @@
+package com.Amazon.pageobjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class viewcart_pagefactory {
+
+	WebDriver driver;
+	
+	
+ @FindBy(id="nav-cart-count")
+ WebElement Viewcart;	
+ 
+ public void clickonviewcart()
+	{
+		(Viewcart).click();
+	}
+
+}

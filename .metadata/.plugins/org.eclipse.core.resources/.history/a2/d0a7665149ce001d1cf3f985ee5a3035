@@ -1,0 +1,84 @@
+package com.opencart.testcases;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Testfactory {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		String projectpath=System.getProperty("user.dir");
+		ExtentReports extent=new ExtentReports();
+		ExtentSparkReporter spark=new ExtentSparkReporter(projectpath+"\\Reports\\TC2.html");
+		extent.attachReporter(spark);
+		ExtentTest test=extent.createTest("Sign in Amazon");
+		
+		String propertypath="C:\\Users\\Administrator\\Desktop\\Eclipse\\march\\src\\test\\java\\com\\Amazon\\testdata\\inputproperties2";
+		propertypath=propertypath.trim();
+		InputStream input=new FileInputStream(propertypath);
+		Properties prob=new Properties();
+		prob.load(input);
+		
+		String url=prob.getProperty("url");
+		
+		File f1=new File("C:\\Users\\Administrator\\Desktop\\Eclipse\\march\\src\\test\\java\\com\\Amazon\\testdata\\amazon.xlsx");
+		FileInputStream fis=new FileInputStream(f1);
+		XSSFWorkbook workbook=new XSSFWorkbook(fis);
+		XSSFSheet sheet=workbook.getSheetAt(0);
+		int rowcount=sheet.getPhysicalNumberOfRows();
+		for(int i=0;i<rowcount;i++)
+		{
+			  
+			
+	String email=sheet.getRow(i).getCell(0).getStringCellValue();
+	String password=sheet.getRow(i).getCell(1).getStringCellValue();
+
+			 WebDriverManager.edgedriver().setup();
+			 
+		     WebDriver driver=new EdgeDriver();
+		     driver.get("https://www.amazon.in/");
+	  driver.findElement(By.linkText("Your Account")).click();
+		     
+		     driver.findElement(By.xpath("//*[@id=\"nav-link-accountList\"]")).click();
+		    
+		     driver.findElement(By.id("ap_email")).sendKeys("rockstardivyaakash@gmail.com");
+		     driver.findElement(By.id("continue")).click();
+		     driver.findElement(By.id("ap_password")).sendKeys("Ammanana@6155");
+		     driver.findElement(By.id("signInSubmit")).click();
+		     
+		     //driver.get(url);
+		     
+		     if(driver.findElement(By.linkText("your Account")).isDisplayed())
+		     {
+		    	 test.pass("My Account is clicked");
+		     }
+		     else 
+		     {
+		    	 test.fail("My Account is not clicked"); 
+		     }
+		    
+		     extent.flush();
+		     
+		}
+		}
+
+	 
+
+	}
+
+

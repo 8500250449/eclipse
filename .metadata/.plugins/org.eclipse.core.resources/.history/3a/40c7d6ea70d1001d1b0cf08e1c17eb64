@@ -1,0 +1,65 @@
+package com.Amazon.testcases;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import com.Amazon.pageobjects.Buynow_pagefactory;
+import com.Amazon.pageobjects.viewcart_pagefactory;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class viewcart_Tc6_pagefactory {
+
+	public void Tc6_pagefactory() throws IOException, InterruptedException {
+		// TODO Auto-generated method stub
+	String projectpath=System.getProperty("user.dir");
+	ExtentReports extent=new ExtentReports();
+	ExtentSparkReporter spark=new ExtentSparkReporter(projectpath+"\\Reports\\TC7.html");
+	extent.attachReporter(spark);
+	ExtentTest test=extent.createTest("Buynow in Amazon");
+	
+	String propertypath="C:\\Users\\Administrator\\Desktop\\Eclipse\\march\\src\\test\\java\\com\\Amazon\\testdata\\input.properties";
+	propertypath=propertypath.trim();
+	InputStream input=new FileInputStream(propertypath);
+	Properties prob=new Properties();
+	prob.load(input);
+	String url=prob.getProperty("url");
+	
+	/*File f1=new File("C:\\Users\\Administrator\\Desktop\\Eclipse\\march\\src\\test\\java\\com\\Amazon\\testdata\\amazon.xlsx");
+	FileInputStream fis=new FileInputStream(f1);
+	XSSFWorkbook workbook=new XSSFWorkbook(fis);
+	XSSFSheet sheet=workbook.getSheetAt(0);
+	int rowcount=sheet.getPhysicalNumberOfRows();
+	for(int i=0;i<rowcount;i++)
+	{
+		  
+		
+//String email=sheet.getRow(i).getCell(0).getStringCellValue();
+//String password=sheet.getRow(i).getCell(1).getStringCellValue();*/
+
+		 WebDriverManager.edgedriver().setup();
+		 
+	     WebDriver driver=new EdgeDriver();
+	    
+	     viewcart_pagefactory obj=PageFactory.initElements(driver,viewcart_pagefactory.class);
+	     
+	     driver.get(url);
+	     
+	    obj.clickonviewcart();
+	  //test.pass("Item is buyed Successful");
+	  
+	      extent.flush();  
+ }
+}
+
+
+

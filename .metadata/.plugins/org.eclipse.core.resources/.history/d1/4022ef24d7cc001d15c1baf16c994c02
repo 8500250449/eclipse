@@ -1,0 +1,24 @@
+package labs;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import marchbatch.pageobjects;
+
+public class pomexample11 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		 WebDriverManager.edgedriver().setup();
+	     WebDriver driver=new EdgeDriver();
+	     driver.get("https://demo.opencart.com/");
+	     
+	     pageobjects obj=new pageobjects(driver);
+	     
+	     obj.clickonmyaccount();
+
+	}
+
+}

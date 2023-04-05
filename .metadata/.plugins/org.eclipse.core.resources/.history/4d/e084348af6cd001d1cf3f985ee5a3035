@@ -1,0 +1,49 @@
+package com.mcd.pageobjects;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.openqa.selenium.JavascriptExecutor;
+
+public class AmazonTest {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriverManager.edgedriver().setup();
+	     WebDriver driver=new EdgeDriver();
+	     driver.get("https://www.amazon.in/");
+	     driver.manage().window().maximize();
+	    driver.findElement(By.id("twotabsearchtextbox")).sendKeys("iphone");
+	    
+	     driver.findElement(By.xpath("//*[@id=\"nav-search-submit-button\"]")).click(); 
+	     String windowhandle=driver.getWindowHandle();
+	     System.out.println("first window:"+windowhandle);
+	     
+	     driver.findElement(By.id("multi")).click();
+	     
+	     List<String> l1=new ArrayList<String>(driver.getWindowHandles());
+	     
+
+	     driver.findElement(By.linkText("Apple iPhone 13 (128GB) - Midnight")).click();
+	     
+	     Thread.sleep(38);
+	     JavascriptExecutor js=(JavascriptExecutor)driver;
+		  js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+		 // js.executeScript("window.scrollBy(0,6000)");
+		}
+	     
+	    // driver.findElement(By.id("wishListMainButton")).click();
+	    
+	    
+	     
+	}
+
+

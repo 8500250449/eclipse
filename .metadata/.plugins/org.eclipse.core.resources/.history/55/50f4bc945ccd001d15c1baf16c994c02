@@ -1,0 +1,20 @@
+package com.mcd.pageobjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class mcdexamplepagefactory {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.edgedriver().setup();
+	     WebDriver driver=new EdgeDriver();
+	     driver.get("https://www.mcdelivery.co.in/");
+	     driver.findElement(By.xpath("//a[@class=\"toolbar-bm__title\"]"));
+	     driver.findElement(By.id("input-Address")).sendKeys(" The Marina Mall 13/1A, Old Mahabalipuram Road, Egattur Village, Chennai, Tamil Nadu, 600130");	     
+	}
+
+}
